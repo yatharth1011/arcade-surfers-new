@@ -1,6 +1,7 @@
 namespace SpriteKind {
     export const Coin = SpriteKind.create()
     export const Obstacle = SpriteKind.create()
+    export const TMCP = SpriteKind.create()
 }
 scene.onHitWall(SpriteKind.Player, function (sprite, location) {
     mvx = sprite.vx
@@ -68,18 +69,35 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         scene.centerCameraAt(88, mySprite.y - 30)
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.TMCP, function (sprite, otherSprite) {
+    tml = [
+    tilemap`Forest`,
+    tilemap`Aqua`,
+    tilemap`Dungeon`,
+    tilemap`Road`
+    ]
+    tiles.setCurrentTilemap(tml._pickRandom())
+})
 scene.onOverlapTile(SpriteKind.Obstacle, sprites.castle.tilePath5, function (sprite, location) {
     if (location == tiles.getTileLocation(8, 4) || (location == tiles.getTileLocation(2, 23) || location == tiles.getTileLocation(5, 23) || location == tiles.getTileLocation(8, 23) || location == tiles.getTileLocation(2, 4) || location == tiles.getTileLocation(5, 4))) {
         sprite.destroy()
     }
+})
+sprites.onOverlap(SpriteKind.TMCP, SpriteKind.Obstacle, function (sprite, otherSprite) {
+    sprite.destroy()
 })
 scene.onOverlapTile(SpriteKind.Coin, sprites.castle.tilePath5, function (sprite, location) {
     if (location == tiles.getTileLocation(8, 4) || (location == tiles.getTileLocation(2, 23) || location == tiles.getTileLocation(5, 23) || location == tiles.getTileLocation(8, 23) || location == tiles.getTileLocation(2, 4) || location == tiles.getTileLocation(5, 4))) {
         sprite.destroy()
     }
 })
+sprites.onOverlap(SpriteKind.Coin, SpriteKind.TMCP, function (sprite, otherSprite) {
+    sprite.destroy()
+})
+let tmcp: Sprite = null
 let coin: Sprite = null
 let myObstacle: Sprite = null
+let tml: tiles.TileMapData[] = []
 let mvy = 0
 let mvx = 0
 let placed = 0
@@ -196,4 +214,11 @@ game.onUpdateInterval(750, function () {
     coin.y = mySprite.y - 90
     coin.setVelocity(0, 0)
     coin.setFlag(SpriteFlag.AutoDestroy, true)
+})
+game.onUpdateInterval(10000, function () {
+    tmcp = sprites.create(assets.image`tmcp`, SpriteKind.TMCP)
+    tmcp.x = xlist._pickRandom()
+    tmcp.y = mySprite.y - 100
+    tmcp.setVelocity(0, 0)
+    tmcp.setFlag(SpriteFlag.AutoDestroy, true)
 })
