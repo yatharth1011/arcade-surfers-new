@@ -76,6 +76,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.TMCP, function (sprite, otherSpr
     tilemap`Dungeon`,
     tilemap`Road`
     ]
+    sprites.destroyAllSpritesOfKind(SpriteKind.Coin)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Obstacle)
+    sprites.destroyAllSpritesOfKind(SpriteKind.TMCP)
     tiles.setCurrentTilemap(tml._pickRandom())
     tiles.placeOnTile(mySprite, tiles.getTileLocation(5, 23))
     tiles.centerCameraOnTile(tiles.getTileLocation(5, 23))
@@ -83,87 +86,87 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.TMCP, function (sprite, otherSpr
     tiles.setWallAt(tiles.getTileLocation(2, 4), true)
     tiles.setWallAt(tiles.getTileLocation(5, 4), true)
     tiles.setWallAt(tiles.getTileLocation(8, 4), true)
-    let colList = [2, 5, 8]
+    colList = [2, 5, 8]
     placed = 0
-    let xlist = [40, 88, 135]
+    xlist = [40, 88, 135]
     for (let index = 0; index <= 9; index++) {
         let list: number[] = []
         list.push(index)
     }
     mySprite.ay = -1
     animation.runImageAnimation(
-        mySprite,
-        [img`
-    . . . . . . f f f f . . . . . . 
-    . . . . f f e e e e f f . . . . 
-    . . . f e e e f f e e e f . . . 
-    . . f f f f f 2 2 f f f f f . . 
-    . . f f e 2 e 2 2 e 2 e f f . . 
-    . . f e 2 f 2 f f 2 f 2 e f . . 
-    . . f f f 2 2 e e 2 2 f f f . . 
-    . f f e f 2 f e e f 2 f e f f . 
-    . f e e f f e e e e f e e e f . 
-    . . f e e e e e e e e e e f . . 
-    . . . f e e e e e e e e f . . . 
-    . . e 4 f f f f f f f f 4 e . . 
-    . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-    . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
-    . . . . . f f f f f f . . . . . 
-    . . . . . f f . . f f . . . . . 
-    `, img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . f f f f . . . . . . 
-    . . . . f f e e e e f f . . . . 
-    . . . f e e e f f e e e f . . . 
-    . . . f f f f 2 2 f f f f . . . 
-    . . f f e 2 e 2 2 e 2 e f f . . 
-    . . f e 2 f 2 f f f 2 f e f . . 
-    . . f f f 2 f e e 2 2 f f f . . 
-    . . f e 2 f f e e 2 f e e f . . 
-    . f f e f f e e e f e e e f f . 
-    . f f e e e e e e e e e e f f . 
-    . . . f e e e e e e e e f . . . 
-    . . . e f f f f f f f f 4 e . . 
-    . . . 4 f 2 2 2 2 2 e d d 4 . . 
-    . . . e f f f f f f e e 4 . . . 
-    . . . . f f f . . . . . . . . . 
-    `, img`
-    . . . . . . f f f f . . . . . . 
-    . . . . f f e e e e f f . . . . 
-    . . . f e e e f f e e e f . . . 
-    . . f f f f f 2 2 f f f f f . . 
-    . . f f e 2 e 2 2 e 2 e f f . . 
-    . . f e 2 f 2 f f 2 f 2 e f . . 
-    . . f f f 2 2 e e 2 2 f f f . . 
-    . f f e f 2 f e e f 2 f e f f . 
-    . f e e f f e e e e f e e e f . 
-    . . f e e e e e e e e e e f . . 
-    . . . f e e e e e e e e f . . . 
-    . . e 4 f f f f f f f f 4 e . . 
-    . . 4 d f 2 2 2 2 2 2 f d 4 . . 
-    . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
-    . . . . . f f f f f f . . . . . 
-    . . . . . f f . . f f . . . . . 
-    `, img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . f f f f . . . . . . 
-    . . . . f f e e e e f f . . . . 
-    . . . f e e e f f e e e f . . . 
-    . . . f f f f 2 2 f f f f . . . 
-    . . f f e 2 e 2 2 e 2 e f f . . 
-    . . f e f 2 f f f 2 f 2 e f . . 
-    . . f f f 2 2 e e f 2 f f f . . 
-    . . f e e f 2 e e f f 2 e f . . 
-    . f f e e e f e e e f f e f f . 
-    . f f e e e e e e e e e e f f . 
-    . . . f e e e e e e e e f . . . 
-    . . e 4 f f f f f f f f e . . . 
-    . . 4 d d e 2 2 2 2 2 f 4 . . . 
-    . . . 4 e e f f f f f f e . . . 
-    . . . . . . . . . f f f . . . . 
-    `],
-        100,
-        true
+    mySprite,
+    [img`
+        . . . . . . f f f f . . . . . . 
+        . . . . f f e e e e f f . . . . 
+        . . . f e e e f f e e e f . . . 
+        . . f f f f f 2 2 f f f f f . . 
+        . . f f e 2 e 2 2 e 2 e f f . . 
+        . . f e 2 f 2 f f 2 f 2 e f . . 
+        . . f f f 2 2 e e 2 2 f f f . . 
+        . f f e f 2 f e e f 2 f e f f . 
+        . f e e f f e e e e f e e e f . 
+        . . f e e e e e e e e e e f . . 
+        . . . f e e e e e e e e f . . . 
+        . . e 4 f f f f f f f f 4 e . . 
+        . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+        . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
+        . . . . . f f f f f f . . . . . 
+        . . . . . f f . . f f . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f f f f . . . . . . 
+        . . . . f f e e e e f f . . . . 
+        . . . f e e e f f e e e f . . . 
+        . . . f f f f 2 2 f f f f . . . 
+        . . f f e 2 e 2 2 e 2 e f f . . 
+        . . f e 2 f 2 f f f 2 f e f . . 
+        . . f f f 2 f e e 2 2 f f f . . 
+        . . f e 2 f f e e 2 f e e f . . 
+        . f f e f f e e e f e e e f f . 
+        . f f e e e e e e e e e e f f . 
+        . . . f e e e e e e e e f . . . 
+        . . . e f f f f f f f f 4 e . . 
+        . . . 4 f 2 2 2 2 2 e d d 4 . . 
+        . . . e f f f f f f e e 4 . . . 
+        . . . . f f f . . . . . . . . . 
+        `,img`
+        . . . . . . f f f f . . . . . . 
+        . . . . f f e e e e f f . . . . 
+        . . . f e e e f f e e e f . . . 
+        . . f f f f f 2 2 f f f f f . . 
+        . . f f e 2 e 2 2 e 2 e f f . . 
+        . . f e 2 f 2 f f 2 f 2 e f . . 
+        . . f f f 2 2 e e 2 2 f f f . . 
+        . f f e f 2 f e e f 2 f e f f . 
+        . f e e f f e e e e f e e e f . 
+        . . f e e e e e e e e e e f . . 
+        . . . f e e e e e e e e f . . . 
+        . . e 4 f f f f f f f f 4 e . . 
+        . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+        . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
+        . . . . . f f f f f f . . . . . 
+        . . . . . f f . . f f . . . . . 
+        `,img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f f f f . . . . . . 
+        . . . . f f e e e e f f . . . . 
+        . . . f e e e f f e e e f . . . 
+        . . . f f f f 2 2 f f f f . . . 
+        . . f f e 2 e 2 2 e 2 e f f . . 
+        . . f e f 2 f f f 2 f 2 e f . . 
+        . . f f f 2 2 e e f 2 f f f . . 
+        . . f e e f 2 e e f f 2 e f . . 
+        . f f e e e f e e e f f e f f . 
+        . f f e e e e e e e e e e f f . 
+        . . . f e e e e e e e e f . . . 
+        . . e 4 f f f f f f f f e . . . 
+        . . 4 d d e 2 2 2 2 2 f 4 . . . 
+        . . . 4 e e f f f f f f e . . . 
+        . . . . . . . . . f f f . . . . 
+        `],
+    100,
+    true
     )
 })
 scene.onOverlapTile(SpriteKind.Obstacle, sprites.castle.tilePath5, function (sprite, location) {
@@ -185,6 +188,8 @@ sprites.onOverlap(SpriteKind.Coin, SpriteKind.TMCP, function (sprite, otherSprit
 let tmcp: Sprite = null
 let coin: Sprite = null
 let myObstacle: Sprite = null
+let xlist: number[] = []
+let colList: number[] = []
 let tml: tiles.TileMapData[] = []
 let mvy = 0
 let mvx = 0
@@ -198,12 +203,12 @@ mySprite.setVelocity(0, -50)
 tiles.setWallAt(tiles.getTileLocation(2, 4), true)
 tiles.setWallAt(tiles.getTileLocation(5, 4), true)
 tiles.setWallAt(tiles.getTileLocation(8, 4), true)
-let colList = [2, 5, 8]
+let colList2 = [2, 5, 8]
 placed = 0
-let xlist = [40, 88, 135]
-for (let index = 0; index <= 9; index++) {
-    let list: number[] = []
-    list.push(index)
+let xlist2 = [40, 88, 135]
+for (let index2 = 0; index2 <= 9; index2++) {
+    let list2: number[] = []
+    list2.push(index2)
 }
 mySprite.ay = -1
 animation.runImageAnimation(
@@ -291,21 +296,21 @@ game.onUpdate(function () {
 })
 game.onUpdateInterval(5000, function () {
     myObstacle = sprites.create(assets.image`Obstacle4`, SpriteKind.Obstacle)
-    myObstacle.x = xlist._pickRandom()
+    myObstacle.x = xlist2._pickRandom()
     myObstacle.y = mySprite.y - 120
     myObstacle.setVelocity(0, 0)
     myObstacle.setFlag(SpriteFlag.AutoDestroy, true)
 })
 game.onUpdateInterval(750, function () {
     coin = sprites.create(assets.image`Coin`, SpriteKind.Coin)
-    coin.x = xlist._pickRandom()
+    coin.x = xlist2._pickRandom()
     coin.y = mySprite.y - 90
     coin.setVelocity(0, 0)
     coin.setFlag(SpriteFlag.AutoDestroy, true)
 })
 game.onUpdateInterval(10000, function () {
     tmcp = sprites.create(assets.image`tmcp`, SpriteKind.TMCP)
-    tmcp.x = xlist._pickRandom()
+    tmcp.x = xlist2._pickRandom()
     tmcp.y = mySprite.y - 100
     tmcp.setVelocity(0, 0)
     tmcp.setFlag(SpriteFlag.AutoDestroy, true)
