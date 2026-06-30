@@ -1,7 +1,7 @@
  
 
 
-> Open this page at [https://yatharth1011.github.io/arcade-surfers/](https://yatharth1011.github.io/arcade-surfers/)
+> Open this page at [https://yatharth1011.github.io/arcade-surfers-new/](https://yatharth1011.github.io/arcade-surfers-new/)
 
 ## Use as Extension
 
