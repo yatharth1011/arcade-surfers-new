@@ -1,64 +1,28 @@
- 
+# Arcade Surfers
 
+A Subway Surfers-style endless runner made in [Microsoft MakeCode Arcade](https://arcade.makecode.com/): switch between three lanes, collect coins and dodge obstacles for as long as you can.
 
-> Open this page at [https://yatharth1011.github.io/arcade-surfers-new/](https://yatharth1011.github.io/arcade-surfers-new/)
+**Play it:** https://yatharth1011.github.io/arcade-surfers-new/
 
-## Use as Extension
+![Blocks preview](https://github.com/yatharth1011/arcade-surfers-new/raw/master/.github/makecode/blocks.png)
 
-This repository can be added as an **extension** in MakeCode.
+## Controls
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/yatharth1011/arcade-surfers** and import
+- **← / →** switch between the three lanes
+- Each coin is worth **10 points**; hitting an obstacle ends the run
+- Beat your high score for a little victory tune
 
-## Edit this project ![Build status badge](https://github.com/yatharth1011/arcade-surfers/workflows/MakeCode/badge.svg)
+## Edit this project
 
-To edit this repository in MakeCode.
+1. Open [arcade.makecode.com](https://arcade.makecode.com/).
+2. Click **Import → Import URL**.
+3. Paste `https://github.com/yatharth1011/arcade-surfers-new` and import.
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/yatharth1011/arcade-surfers** and click import
+The game logic is in [`main.ts`](main.ts) (also available as blocks in `main.blocks`); sprites and the tilemap are in `images.g.*` and `tilemap.g.*`.
 
-## Blocks preview
+## Use as an extension
 
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
-
-![A rendered view of the blocks](https://github.com/yatharth1011/arcade-surfers/raw/master/.github/makecode/blocks.png)
-
-#### Metadata (used for search, rendering)
-
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
-
-
-
-> Open this page at [https://yatharth1011.github.io/arcade-surfers-new/](https://yatharth1011.github.io/arcade-surfers-new/)
-
-## Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/yatharth1011/arcade-surfers-new** and import
-
-## Edit this project ![Build status badge](https://github.com/yatharth1011/arcade-surfers-new/workflows/MakeCode/badge.svg)
-
-To edit this repository in MakeCode.
-
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/yatharth1011/arcade-surfers-new** and click import
-
-## Blocks preview
-
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
-
-![A rendered view of the blocks](https://github.com/yatharth1011/arcade-surfers-new/raw/master/.github/makecode/blocks.png)
+In MakeCode Arcade: **New Project → ⚙ → Extensions**, then search for `https://github.com/yatharth1011/arcade-surfers-new`.
 
 #### Metadata (used for search, rendering)
 
